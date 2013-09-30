@@ -31,7 +31,8 @@ function animate() {
 	image.rotation += rotSpeed;
 	image.position.y += speed
 	if(image.position.y > 400) {
-		speed = -(speed+0.01);
+		speed = -(speed+0.02);
+    image.position.y = 400
     rotSpeed = Math.random()/10-0.05;
 	}
 
