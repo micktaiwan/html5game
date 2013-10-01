@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="styles/styles.css">
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src='bower_components/jquery/jquery.min.js'></script>-->
+    <script src='bower_components/jquery/jquery.min.js'></script>
     <script src="scripts/pixi.js"></script>
   </head>
   <body>
@@ -26,7 +26,7 @@
         }
       });
       // Add a callback that is triggered for each chat message.
-      db.limit(10).on('child_added', function (snapshot) {
+      db.limit(20).on('child_added', function (snapshot) {
         var msg = snapshot.val();
         $('<div/>').text(msg.text).prepend($('<em/>')
           .text(msg.name+': ')).appendTo($('#messagesDiv'));
