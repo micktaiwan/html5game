@@ -10,7 +10,7 @@ document.body.appendChild(renderer.view);
 requestAnimFrame(animate);
 
 // create a texture from an image path
-var texture = PIXI.Texture.fromImage("ball.jpg");
+var texture = PIXI.Texture.fromImage("img/ball.jpg");
 // create a new Sprite using the texture
 var image = new PIXI.Sprite(texture);
 
