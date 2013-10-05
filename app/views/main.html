@@ -1,9 +1,24 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
-</div>
+<script src="scripts/game.js"></script>
+<div id='messagesDiv'></div>
+<input type='text' id='nameInput' placeholder='Name'>
+<input type='text' id='messageInput' placeholder='Message...'>
+<script>
+  // Get a reference to the root of the chat data.
+  var db = new Firebase('https://html5game.firebaseio.com/');
+  // When the user presses enter on the message input, write the message to firebase.
+  $('#messageInput').keypress(function (e) {
+    if (e.keyCode == 13) {
+      var name = $('#nameInput').val();
+      var text = $('#messageInput').val();
+      db.push({name:name, text:text});
+      $('#messageInput').val('');
+    }
+  });
+  // Add a callback that is triggered for each chat message.
+  db.limit(20).on('child_added', function (snapshot) {
+    var msg = snapshot.val();
+    $('<div/>').text(msg.text).prepend($('<em/>')
+      .text(msg.name+': ')).appendTo($('#messagesDiv'));
+    $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+  });
+</script>
